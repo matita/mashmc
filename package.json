@@ -1,0 +1,17 @@
+{
+  "name": "mashmc",
+  "version": "0.1.0",
+  "description": "Media center written in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Matita <matitald@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "expect.js": "^0.3.1"
+  },
+  "dependencies": {
+    "express": "^4.12.3"
+  }
+}

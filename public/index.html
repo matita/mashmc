@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MashMediaCenter</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .results,
+      .player {
+        width: 50%;
+        float: left;
+      }
+
+      video {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>MashMediaCenter</h1>
+
+    <div class="results"></div>
+    <div class="player">
+      <video id="v" controls></video>
+    </div>
+
+
+
+
+    <script id="media-tmpl" type="text/html">
+      <div class="media media-{{type}}" data-id="{{_id}}">
+        <a class="media-link" href="media/{{_id}}" target="_blank" title="{{filePath}}">{{ext}} &mdash; {{title}}</a>
+      </div>
+    </script>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+      var Tmpl = {
+          media: Handlebars.compile($('#media-tmpl').html())
+        };
+
+      $(document.body)
+        .on('click', '.media-link', function() { $('#v')[0].src = $(this).attr('href'); return false; })
+
+
+      $.getJSON(
+        '/api/media',
+        { type: 'video' },
+        function(items) {
+          $('.results').html(items.map(Tmpl.media));
+        });
+    </script>
+  </body>
+</html>
