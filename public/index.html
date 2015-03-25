@@ -55,7 +55,13 @@
         '/api/media',
         { type: 'video' },
         function(items) {
-          $('.results').html(items.map(Tmpl.media));
+          $('.results').html(items
+            .sort(function(i1, i2) {
+              return i1.ext < i2.ext ? -1 :
+                i1.ext > i2.ext ? 1 :
+                0;
+            })
+            .map(Tmpl.media));
         });
     </script>
   </body>
