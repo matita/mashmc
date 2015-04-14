@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "express": "^4.12.3",
+    "nedb": "^1.1.2",
+    "npm": "^2.7.6",
     "walkdir": "0.0.7"
   }
 }
