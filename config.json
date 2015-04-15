@@ -1,0 +1,5 @@
+{
+  "appNamespace": "mashmc-",
+  "homeRedirect": "/apps",
+  "webserverPort": 3000
+}

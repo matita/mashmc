@@ -17,15 +17,30 @@ filer
 
 */
 
-var server = require('./lib/server.js')(3000),
-  apps = require('./lib/apps.js'),
-  db = require('./lib/db.js');
+var fs = require('fs'),
+  server = require('./lib/webserver.js'),
+  appsmanager = require('./lib/appsmanager.js');
 
-initApp('apps', apps);
-apps.on('loaded', function(apps) {
-  for (var appName in apps)
-    initApp(appName, apps[appName]);
+var mashmc = {
+  config: JSON.parse(fs.readFileSync('./config.json')),
+  server: server,
+  apps: appsmanager
+};
+
+
+server.init(mashmc, function(err) {
+  if (err) return console.error(err);
 });
+
+
+appsmanager.init(mashmc, function(err) {
+  if (err) return console.error(err);
+});
+
+
+
+
+
 
 function initApp(appName, app) {
   console.log('init', appName);
