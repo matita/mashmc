@@ -19,10 +19,12 @@ filer
 
 var fs = require('fs'),
   server = require('./lib/webserver.js'),
-  appsmanager = require('./lib/appsmanager.js');
+  appsmanager = require('./lib/appsmanager.js'),
+  db = require('./lib/db.js');
 
 var mashmc = {
   config: JSON.parse(fs.readFileSync('./config.json')),
+  db: db,
   server: server,
   apps: appsmanager
 };

@@ -12,7 +12,9 @@
     "expect.js": "^0.3.1"
   },
   "dependencies": {
+    "browserify": "^9.0.8",
     "express": "^4.12.3",
+    "handlebars": "^3.0.1",
     "is-there": "^1.1.0",
     "nedb": "^1.1.2",
     "npm": "^2.7.6",
