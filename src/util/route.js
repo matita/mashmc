@@ -1,6 +1,3 @@
-console.log('route');
-
-
 $(window).on('popstate', function(event) {
   route();
 });
