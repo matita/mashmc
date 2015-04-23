@@ -750,7 +750,7 @@ $(window).on('popstate', function(event) {
 
 
 $(document.body).on('click', 'a', function(e) {
-  var href = $(this)[0].href;
+  var href = $(this).attr('href');
   console.log('href', href);
   e.preventDefault();
 });
