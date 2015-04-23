@@ -2,17 +2,35 @@ console.log('route');
 
 
 $(window).on('popstate', function(event) {
-  console.log('popstate fired!');
+  route();
 });
 
 
 $(document.body).on('click', 'a', function(e) {
   var href = $(this).attr('href');
-  console.log('href', href);
-  e.preventDefault();
+  
+  if (href.indexOf('/') == 0) {
+    e.preventDefault();
+    route(href);
+  }
 });
 
 
-module.exports = function(route) {
+function route(href) {
+  href = href || location.pathname + location.search;
+  console.log('route', href);
+  var prefix = 'mashmc-';
+  
+  var appName = href.split('/')[1];
+  appName = appName && prefix + appName;
 
+  $('.mashmc-app-active').removeClass('mashmc-app-active');
+  $('.mashmc-app-' + appName).addClass('mashmc-app-active');
+  history.pushState({}, '', href);
 }
+
+
+route();
+
+
+module.exports = route;
