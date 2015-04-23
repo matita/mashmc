@@ -8,6 +8,4 @@
 
   mashmc.apps[app.name] = new AppFn(app);
 
-  console.log('appPath', '{{jsPath}}');
-
 })();

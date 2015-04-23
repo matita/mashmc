@@ -8,6 +8,4 @@
 
   mashmc.apps[app.name] = new AppFn(app);
 
-  console.log('appPath', 'c:\\Progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js');
-
 })();

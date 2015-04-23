@@ -694,6 +694,7 @@ module.exports = function(app) {
   
   var BaseApp = function() { };
 
+  // app ajax API
   BaseApp.prototype.api = {
     get: function() {
       arguments[0] = app.url + arguments[0];
@@ -701,16 +702,16 @@ module.exports = function(app) {
     }
   }
 
+  // app jQuery wrapper
   var rootSelector = '.mashmc-app-' + app.name;
   BaseApp.prototype.$root = $(rootSelector);
 
+  // app template utils
   BaseApp.prototype.tmpl = {};
-  console.log('root selector', rootSelector, $(rootSelector + ' script[class^="tmpl-"]'));
   $(rootSelector + ' script[class^="tmpl-"]').each(function() {
     var $this = $(this),
       className = $this.attr('class').split(' ').shift(),
       name = className.replace(/^tmpl-/, '');
-    console.log('found tmpl', name);
     BaseApp.prototype.tmpl[name] = Handlebars.compile($this.html());
   });
 
@@ -737,13 +738,8 @@ require('./temp-apps.js');
 
   mashmc.apps[app.name] = new AppFn(app);
 
-  console.log('appPath', 'c:\\Progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js');
-
 })();
 },{"./mashmc-app.js":6,"c:\\Progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js":5,"util":4}],9:[function(require,module,exports){
-console.log('route');
-
-
 $(window).on('popstate', function(event) {
   route();
 });
