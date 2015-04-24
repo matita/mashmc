@@ -729,8 +729,8 @@ var mashmc = {
 require('./temp-apps.js');
 },{"./temp-apps.js":8,"./util/route.js":9}],8:[function(require,module,exports){
 (function() {
-  var app = {"name":"mashmc-apps","appName":"apps","version":"0.1.0","description":"Lists all installed apps","author":{"name":"Matita","email":"matitald@gmail.com"},"path":"c:\\Progetti\\mashmc\\node_modules\\mashmc-apps","url":"/apps","hasGUI":true,"jsPath":"c:\\Progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js","html":"  <div class=\"main\">\r\n\r\n  </div>\r\n\r\n\r\n  <script class=\"tmpl-plugin\" type=\"text/html\">\r\n    <div class=\"plugin\">\r\n      <a href=\"{{url}}\"><h2 class=\"plugin-name\">{{appName}}</h2></a>\r\n      <p class=\"plugin-description\">{{description}}</p>\r\n    </div>\r\n  </script>"};
-  var AppFn = require('c:\\Progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js');
+  var app = {"name":"mashmc-apps","appName":"apps","version":"0.1.0","description":"Lists all installed apps","author":{"name":"Matita","email":"matitald@gmail.com"},"path":"c:\\matteo\\progetti\\mashmc\\node_modules\\mashmc-apps","url":"/apps","hasGUI":true,"jsPath":"c:\\matteo\\progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js","html":"  <div class=\"main\">\r\n\r\n  </div>\r\n\r\n\r\n  <script class=\"tmpl-plugin\" type=\"text/html\">\r\n    <div class=\"plugin\">\r\n      <a href=\"{{url}}\"><h2 class=\"plugin-name\">{{appName}}</h2></a>\r\n      <p class=\"plugin-description\">{{description}}</p>\r\n    </div>\r\n  </script>"};
+  var AppFn = require('c:\\matteo\\progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js');
   var util = require('util');
   var BaseApp = require('./mashmc-app.js')(app);
 
@@ -739,7 +739,7 @@ require('./temp-apps.js');
   mashmc.apps[app.name] = new AppFn(app);
 
 })();
-},{"./mashmc-app.js":6,"c:\\Progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js":5,"util":4}],9:[function(require,module,exports){
+},{"./mashmc-app.js":6,"c:\\matteo\\progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js":5,"util":4}],9:[function(require,module,exports){
 $(window).on('popstate', function(event) {
   route();
 });
