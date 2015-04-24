@@ -7,8 +7,7 @@
     "start": "node index.js",
     "test": "mocha",
     "//": "Dev scripts",
-    "less": "lessc less/main.less > public/style.css",
-
+    "less": "lessc less/main.less --autoprefix=\"last 2 versions\" > public/style.css",
     "watch:less": "watch \"npm run less\" less/"
   },
   "author": "Matita <matitald@gmail.com>",
@@ -16,6 +15,7 @@
   "devDependencies": {
     "expect.js": "^0.3.1",
     "less": "^2.5.0",
+    "less-plugin-autoprefix": "^1.4.1",
     "watch": "^0.16.0"
   },
   "dependencies": {
@@ -27,5 +27,19 @@
     "nedb": "^1.1.2",
     "npm": "^2.7.6",
     "walkdir": "0.0.7"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matita/mashmc.git"
+  },
+  "keywords": [
+    "mediacenter"
+  ],
+  "bugs": {
+    "url": "https://github.com/matita/mashmc/issues"
+  },
+  "homepage": "https://github.com/matita/mashmc"
 }

@@ -6,3 +6,11 @@ body {
 a {
   color: #ffffff;
 }
+.mashmc-list-item {
+  transition: all .2s;
+  padding-left: 1em;
+  border-left: 0px solid #ffffff;
+}
+.mashmc-list-item:hover {
+  border-left: 10px solid #ffffff;
+}
