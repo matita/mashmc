@@ -23,6 +23,11 @@ module.exports = function(app) {
     BaseApp.prototype.tmpl[name] = Handlebars.compile($this.html());
   });
 
+  // app route
+  BaseApp.prototype.route = function() {
+    console.log('basic route', arguments);
+  }
+
 
 
   return BaseApp;

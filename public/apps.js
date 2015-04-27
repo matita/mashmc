@@ -713,28 +713,39 @@ module.exports = function(app) {
     }
   ];
 
+
+  me.route = function(mediaType) {
+    if (!mediaType)
+      return viewTypes();
+    var type = types.filter(function(type) { return type.name == mediaType; })[0];
+    if (type)
+      viewMedia(type.filter, mediaType);
+  }
+
+
+
   function viewTypes() {
     $media.html(types.map(function(type) {
       return $(me.tmpl.type(type)).data(type);
     }))
   }
 
-  function viewMedia(filters) {
+  function viewMedia(filters, type) {
     $media.html('loading media');
     me.api.get('.json', { filter: JSON.stringify(filters) }, function(response) {
-      me.$root.find('.media').html(response.map(function(item) {
+      me.$root.find('.media').html(['<a href="' + app.url + '"><div class="mashmc-list-item"><h2>.. back</h2></div></a>'].concat(response.map(function(item) {
         return $(me.tmpl.media(item)).data(item);
-      }));
+      })));
     });
   }
 
-  viewTypes();
+  
 
   $media
-    .on('click', '.media-type', function() {
+    /*.on('click', '.media-type', function() {
       var type = $(this).data();
       viewMedia(type.filter);
-    })
+    })*/
     .on('click', '.mashmc-list-item', function() {
       console.log($(this).data());
     });
@@ -765,6 +776,11 @@ module.exports = function(app) {
     BaseApp.prototype.tmpl[name] = Handlebars.compile($this.html());
   });
 
+  // app route
+  BaseApp.prototype.route = function() {
+    console.log('basic route', arguments);
+  }
+
 
 
   return BaseApp;
@@ -779,8 +795,8 @@ var mashmc = {
 require('./temp-apps.js');
 },{"./temp-apps.js":9,"./util/route.js":10}],9:[function(require,module,exports){
 (function() {
-  var app = {"name":"mashmc-apps","appName":"apps","version":"0.1.0","description":"Lists all installed apps on mashmc","author":{"name":"Matita","email":"matitald@gmail.com"},"path":"c:\\Progetti\\mashmc\\node_modules\\mashmc-apps","url":"/apps","hasGUI":true,"jsPath":"c:\\Progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js","html":"  <div class=\"main\">\r\n\r\n  </div>\r\n\r\n\r\n  <script class=\"tmpl-plugin\" type=\"text/html\">\r\n    <a href=\"{{url}}\">\r\n      <div class=\"mashmc-list-item plugin\">\r\n        <h2 class=\"plugin-name\">{{appName}}</h2>\r\n        <p class=\"plugin-description\">{{description}}</p>\r\n      </div>\r\n    </a>\r\n  </script>"};
-  var AppFn = require('c:\\Progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js');
+  var app = {"name":"mashmc-library","appName":"library","version":"0.1.0","description":"Lists media in mashmc","author":{"name":"Matita","email":"matitald@gmail.com"},"path":"c:\\matteo\\progetti\\mashmc\\node_modules\\mashmc-library","url":"/library","hasGUI":true,"jsPath":"c:\\matteo\\progetti\\mashmc\\node_modules\\mashmc-library\\public\\app.js","html":"<div class=\"media mashmc-list\">\r\n\r\n</div>\r\n\r\n\r\n<script class=\"tmpl-type\" type=\"text/html\">\r\n  <a href=\"/library/{{name}}\">\r\n    <div class=\"media-type mashmc-list-item\">\r\n      <h2 class=\"media-type-title\">\r\n        {{name}}\r\n      </h2>\r\n    </div>\r\n  </a>\r\n</script>\r\n\r\n<script class=\"tmpl-media\" type=\"text/html\">\r\n  <div class=\"media-item mashmc-list-item\">\r\n    <h2 class=\"media-item-title\">\r\n      {{title}}\r\n      {{#if year}}({{year}}){{/if}}\r\n    </h2>\r\n    <p class=\"media-item-filepath\">{{filepath}}</p>\r\n  </div>\r\n</script>"};
+  var AppFn = require('c:\\matteo\\progetti\\mashmc\\node_modules\\mashmc-library\\public\\app.js');
   var util = require('util');
   var BaseApp = require('./mashmc-app.js')(app);
 
@@ -789,8 +805,8 @@ require('./temp-apps.js');
   mashmc.apps[app.name] = new AppFn(app);
 
 })();(function() {
-  var app = {"name":"mashmc-library","appName":"library","version":"0.1.0","description":"Lists media in mashmc","author":{"name":"Matita","email":"matitald@gmail.com"},"path":"c:\\Progetti\\mashmc\\node_modules\\mashmc-library","url":"/library","hasGUI":true,"jsPath":"c:\\Progetti\\mashmc\\node_modules\\mashmc-library\\public\\app.js","html":"<div class=\"media mashmc-list\">\r\n\r\n</div>\r\n\r\n\r\n<script class=\"tmpl-type\" type=\"text/html\">\r\n  <div class=\"media-type mashmc-list-item\">\r\n    <h2 class=\"media-type-title\">{{name}}</h2>\r\n  </div>\r\n</script>\r\n\r\n<script class=\"tmpl-media\" type=\"text/html\">\r\n  <div class=\"media-item mashmc-list-item\">\r\n    <h2 class=\"media-item-title\">{{title}}</h2>\r\n    <p class=\"media-item-filepath\">{{filepath}}</p>\r\n  </div>\r\n</script>"};
-  var AppFn = require('c:\\Progetti\\mashmc\\node_modules\\mashmc-library\\public\\app.js');
+  var app = {"name":"mashmc-apps","appName":"apps","version":"0.1.0","description":"Lists all installed apps on mashmc","author":{"name":"Matita","email":"matitald@gmail.com"},"path":"c:\\matteo\\progetti\\mashmc\\node_modules\\mashmc-apps","url":"/apps","hasGUI":true,"jsPath":"c:\\matteo\\progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js","html":"  <div class=\"main\">\r\n\r\n  </div>\r\n\r\n\r\n  <script class=\"tmpl-plugin\" type=\"text/html\">\r\n    <a href=\"{{url}}\">\r\n      <div class=\"mashmc-list-item plugin\">\r\n        <h2 class=\"plugin-name\">{{appName}}</h2>\r\n        <p class=\"plugin-description\">{{description}}</p>\r\n      </div>\r\n    </a>\r\n  </script>"};
+  var AppFn = require('c:\\matteo\\progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js');
   var util = require('util');
   var BaseApp = require('./mashmc-app.js')(app);
 
@@ -799,7 +815,7 @@ require('./temp-apps.js');
   mashmc.apps[app.name] = new AppFn(app);
 
 })();
-},{"./mashmc-app.js":7,"c:\\Progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js":5,"c:\\Progetti\\mashmc\\node_modules\\mashmc-library\\public\\app.js":6,"util":4}],10:[function(require,module,exports){
+},{"./mashmc-app.js":7,"c:\\matteo\\progetti\\mashmc\\node_modules\\mashmc-apps\\public\\app.js":5,"c:\\matteo\\progetti\\mashmc\\node_modules\\mashmc-library\\public\\app.js":6,"util":4}],10:[function(require,module,exports){
 $(window).on('popstate', function(event) {
   route();
 });
@@ -808,7 +824,7 @@ $(window).on('popstate', function(event) {
 $(document.body).on('click', 'a', function(e) {
   var href = $(this).attr('href');
   
-  if (href.indexOf('/') == 0) {
+  if (href.indexOf('http') !== 0) {
     e.preventDefault();
     route(href);
   }
@@ -820,16 +836,23 @@ function route(href) {
   console.log('route', href);
   var prefix = 'mashmc-';
   
-  var appName = href.split('/')[1];
+  var paths = href.split('/');
+  var appName = paths[1];
   appName = appName && prefix + appName;
 
   $('.mashmc-app-active').removeClass('mashmc-app-active');
   $('.mashmc-app-' + appName).addClass('mashmc-app-active');
-  history.pushState({}, '', href);
+  history.pushState({}, '', paths.join('/'));
+
+  var app = mashmc.apps[appName];
+  console.log('app', app, appName);
+  if (app)
+    app.route.apply(app, paths.slice(2));
 }
 
-
-route();
+$(function() {
+  route();
+});
 
 
 module.exports = route;

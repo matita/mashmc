@@ -6,7 +6,7 @@ $(window).on('popstate', function(event) {
 $(document.body).on('click', 'a', function(e) {
   var href = $(this).attr('href');
   
-  if (href.indexOf('/') == 0) {
+  if (href.indexOf('http') !== 0) {
     e.preventDefault();
     route(href);
   }
@@ -18,16 +18,23 @@ function route(href) {
   console.log('route', href);
   var prefix = 'mashmc-';
   
-  var appName = href.split('/')[1];
+  var paths = href.split('/');
+  var appName = paths[1];
   appName = appName && prefix + appName;
 
   $('.mashmc-app-active').removeClass('mashmc-app-active');
   $('.mashmc-app-' + appName).addClass('mashmc-app-active');
-  history.pushState({}, '', href);
+  history.pushState({}, '', paths.join('/'));
+
+  var app = mashmc.apps[appName];
+  console.log('app', app, appName);
+  if (app)
+    app.route.apply(app, paths.slice(2));
 }
 
-
-route();
+$(function() {
+  route();
+});
 
 
 module.exports = route;
