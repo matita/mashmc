@@ -1,2 +1,4 @@
 node_modules
 *.db
+src/temp-apps.js
+public/apps.js
