@@ -1,6 +1,7 @@
 body {
   background: #444444;
   color: #ffffff;
+  font-family: 'Roboto', sans-serif;
   font-size: 22px;
 }
 a {
@@ -8,7 +9,7 @@ a {
 }
 .mashmc-list-item {
   transition: all .2s;
-  padding-left: 1em;
+  padding: 1em;
   border-left: 0px solid #ffffff;
 }
 .mashmc-list-item:hover {

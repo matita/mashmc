@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test": "mocha",
     "//": "Dev scripts",
-    "less": "lessc less/main.less --autoprefix=\"last 2 versions\" > public/style.css",
+    "less": "lessc less/main.less --autoprefix=\"last 2 versions\" > public/css/style.css",
     "watch:less": "watch \"npm run less\" less/"
   },
   "author": "Matita <matitald@gmail.com>",
